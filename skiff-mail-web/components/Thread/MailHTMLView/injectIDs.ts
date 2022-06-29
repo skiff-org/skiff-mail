@@ -48,15 +48,6 @@ const markEmailBlockquote = (dom: Document) => {
   }
 };
 
-const injectShowPreviousContainer = (dom: Document) => {
-  const quote = findInjectedNode(dom, InjectedIDs.LastEmailQuote);
-  if (quote) {
-    const div = document.createElement('div');
-    div.setAttribute(INJECTED_ID_ATTR, InjectedIDs.ShowPreviousContainer);
-    quote.parentElement?.insertBefore(div, quote);
-  }
-};
-
 const markCidImages = (dom: Document) => {
   const images = dom.querySelectorAll('img');
   Array.from(images).forEach((img) => {
@@ -88,7 +79,6 @@ export const injectIDs = (html) => {
   dom.body.innerHTML = html;
 
   markEmailBlockquote(dom);
-  injectShowPreviousContainer(dom);
   markCidImages(dom);
 
   return dom.body.innerHTML;

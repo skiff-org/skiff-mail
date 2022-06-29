@@ -57,7 +57,8 @@ const MailHTMLView: FC<MailViewProps> = ({ email }) => {
     const bodyContent = getEmailBody(email);
     const sanitized = DOMPurify.sanitize(bodyContent);
     const withInjectedIDs = injectIDs(sanitized);
-    return withInjectedIDs;
+    const sanitizedIDs = DOMPurify.sanitize(withInjectedIDs);
+    return sanitizedIDs;
   }, [email]);
 
   const showPreviousContainer = findInjectedNodeInIframe(iframeRef, InjectedIDs.ShowPreviousContainer);
